@@ -1,20 +1,20 @@
 const fs = require( 'fs' );
 
- let arrTodo = [];
+ let arrToDo = [];
 
  const guardarDB = () => {
-     let data = JSON.stringify(arrTodo);
+     let data = JSON.stringify(arrToDo);
 
      fs.writeFile('./db/data.json', data, (err) => {
-         if (err) throw new Error('Error al guardar los datos' + err);
+         if (err) throw new Error('Error al guardar los datos: ' + err);
      })
  };
  
  const cargarDB = () => {
      try {
-        arrTodo = require('../db/data');
+        arrToDo = require('../db/data');
      } catch ( e ) {
-         arrTodo = [];
+         arrToDo = [];
      }
  };
 
@@ -26,7 +26,7 @@ const fs = require( 'fs' );
          completado: false
      };
 
-     arrTodo.push(todo);
+     arrToDo.push(todo);
 
      guardarDB();
 
@@ -35,10 +35,26 @@ const fs = require( 'fs' );
 
  const getListado = () => {
      cargarDB();
-     return arrTodo;
+     return arrToDo;
+ };
+
+ const actualizar = (descripcion, completado = true) => {
+     cargarDB();
+
+     let i = arrToDo.findIndex(t => t.descripcion === descripcion);
+
+     if (i >= 0) {
+         arrToDo[i].completado = completado;
+         guardarDB();
+         return true;
+     } else {
+         return false;
+     }
+
  };
 
  module.exports = {
      crear,
-     getListado
+     getListado,
+     actualizar
  };

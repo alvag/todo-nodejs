@@ -21,7 +21,8 @@ switch ( comando ) {
 
         break;
     case 'actualizar':
-        console.log( 'Actualizar ToDo' );
+        let actualizado = todo.actualizar(argv.descripcion, argv.completado);
+        console.log( actualizado );
         break;
     default:
         console.log( 'El comando no es reconocido' );
