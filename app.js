@@ -24,6 +24,10 @@ switch ( comando ) {
         let actualizado = todo.actualizar(argv.descripcion, argv.completado);
         console.log( actualizado );
         break;
+    case 'eliminar':
+        let eliminado = todo.eliminar(argv.descripcion);
+        console.log( eliminado );
+        break;
     default:
         console.log( 'El comando no es reconocido' );
 }

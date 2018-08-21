@@ -53,8 +53,23 @@ const fs = require( 'fs' );
 
  };
 
+ const eliminar = (descripcion) => {
+     cargarDB();
+
+     let i = arrToDo.findIndex(t => t.descripcion === descripcion);
+
+     if (i >= 0) {
+         arrToDo.splice(i, 1);
+         guardarDB();
+         return true;
+     } else {
+         return false;
+     }
+ };
+
  module.exports = {
      crear,
      getListado,
-     actualizar
+     actualizar,
+     eliminar
  };

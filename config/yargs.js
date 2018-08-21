@@ -18,6 +18,13 @@ const argv = require( 'yargs' )
                             desc: 'Marca como completado el ToDo'
                         }
                     })
+                    .command('eliminar', 'Elimina un ToDo', {
+                        descripcion: {
+                            demand: true,
+                            alias: 'd',
+                            desc: 'Descripcion del ToDo'
+                        }
+                    })
                     .help()
                     .argv;
 
