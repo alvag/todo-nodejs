@@ -1,3 +1,4 @@
+const colors = require( 'colors' );
 const argv = require( './config/yargs' ).argv;
 const todo = require( './todo/todo' );
 
@@ -9,7 +10,15 @@ switch ( comando ) {
         console.log( newTodo );
         break;
     case 'listar':
-        console.log( 'Listar ToDo' );
+        let listado = todo.getListado();
+
+        for (let t of listado) {
+            console.log( '======= ToDO ======='.green );
+            console.log( t.descripcion );
+            console.log( 'Estado: ', t.completado );
+            console.log( '===================='.green );
+        }
+
         break;
     case 'actualizar':
         console.log( 'Actualizar ToDo' );

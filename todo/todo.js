@@ -33,6 +33,12 @@ const fs = require( 'fs' );
      return todo;
  };
 
+ const getListado = () => {
+     cargarDB();
+     return arrTodo;
+ };
+
  module.exports = {
-     crear
+     crear,
+     getListado
  };
